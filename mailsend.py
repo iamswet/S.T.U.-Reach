@@ -14,7 +14,7 @@ email_password = "pass"  //your password
 msg = EmailMessage()
 msg['Subject'] = "Email subject"
 msg['From'] = email_address
-msg['To'] = "isitswet@gmail.com"
+msg['To'] = "abc@gmail.com"  //Receiver's mail Address
 msg.set_content("This is email message")
 
 
