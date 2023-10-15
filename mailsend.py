@@ -7,8 +7,8 @@ from email.message import EmailMessage
 
 # set your email and password
 # please use App Password
-email_address = "swets3.it@gmail.com"
-email_password = "xhpl jedd risd twof"
+email_address = "xyz@gmail.com"   // your mail ID
+email_password = "pass"  //your password
 
 # create email
 msg = EmailMessage()
