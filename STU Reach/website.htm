@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teach and Learn Website</title>
+</head>
+<body>
+  <h1>Teach and Learn Website</h1>
+  <form action="/submit" method="post">
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="interest">Interest:</label><br>
+    <input type="radio" id="teach" name="interest" value="teach"> Teach
+    <input type="radio" id="learn" name="interest" value="learn"> Learn<br><br>
+    <label for="topic">Topic:</label><br>
+    <select id="topic" name="topic">
+      <option value="c++">C++</option>
+      <option value="java">Java</option>
+      <option value="python">Python</option>
+      <option value="css">CSS</option>
+      <option value="html">HTML</option>
+      <option value="cloud computing">Cloud Computing</option>
+      <option value="blockchain">Blockchain</option>
+    </select><br><br>
+    <input type="submit" value="Submit">
+  </form> 
+</body>
+</html>
