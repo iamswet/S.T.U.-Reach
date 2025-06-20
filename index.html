@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S.T.U Reach</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #0e0e0e;
+        color: #f5f5f5;
+      }
+      header {
+        background-color: #1a1a1a;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px solid red;
+      }
+      header h1 {
+        color: red;
+        font-size: 2.5em;
+      }
+      .content {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #1b1b1b;
+        border-left: 5px solid red;
+      }
+      h2 {
+        color: red;
+      }
+      .author {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 1em;
+        color: #888;
+      }
+      footer {
+        background-color: #111;
+        padding: 10px;
+        text-align: center;
+        color: #666;
+        font-size: 0.9em;
+        border-top: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>S.T.U Reach</h1>
+      <p>A platform for students to teach, learn, and collaborate.</p>
+    </header>
+
+    <div class="content">
+      <h2>Problem</h2>
+      <p>
+        Many college campuses lack a centralized system where like-minded
+        students can collaborate. Students struggle to connect over shared
+        technical interests and ideas. There’s a communication gap among peers,
+        limiting innovation and learning.
+      </p>
+
+      <h2>Solution</h2>
+      <p>
+        <strong>S.T.U Reach</strong> bridges this gap by filtering and
+        connecting tech enthusiasts in the same campus. It creates local student
+        groups based on interest, and promotes ideation through challenges,
+        weekly quests, and collaborative learning spaces.
+      </p>
+
+      <h2>Why It's Unique</h2>
+      <ul>
+        <li>Campus-focused, fostering real local connections</li>
+        <li>Matchmaking with interest-based filters</li>
+        <li>Gamified weekly challenges to keep users engaged</li>
+        <li>Focus on both teaching and learning – peer-led growth</li>
+      </ul>
+
+      <h2>Architecture</h2>
+      <p>
+        Users can select roles (Teach or Learn), participate in discussion
+        forums, and share social resources.
+        <strong>S.T.U Reach</strong> maintains a robust database to group,
+        connect, and recommend users.
+      </p>
+    </div>
+
+    <div class="content">
+      <h2>🏆 Hackathon Achievement</h2>
+      <p>
+        This project, <strong>S.T.U Reach</strong>, helped me secure
+        <strong>2nd place</strong> at the <em>CodeKraken Hackathon</em>,
+        organized by GDSC in collaboration with Google. The innovative idea of
+        connecting campus learners and teachers through interest-based matching
+        was highly appreciated.
+      </p>
+      <p>Here's a glimpse of the achievement:</p>
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
+          margin-top: 20px;
+        "
+      >
+        <img
+          src="https://media.licdn.com/dms/image/D4D22AQEf1bbH2rtnjA/feedshare-shrink_800/0/1696606170405?e=2147483647&v=beta&t=RSv98Ooxq1M4vHGHfd0KepiwCMZizK6Uj2uRrSn0Q1o"
+          alt="Hackathon Slide"
+          style="max-width: 300px; border: 2px solid red; border-radius: 8px"
+        />
+        <img
+          src="https://media.licdn.com/dms/image/D4D22AQFzHjCF6D-iig/feedshare-shrink_800/0/1696606169849?e=2147483647&v=beta&t=2grDiRdpZzKi_McMMevqQGCQGlwK0KkX1BCwR3lygu8"
+          alt="Team on Stage"
+          style="max-width: 300px; border: 2px solid red; border-radius: 8px"
+        />
+      </div>
+    </div>
+
+    <div class="content">
+      <h2>Auto Matchmaking Script (Python)</h2>
+      <pre
+        style="
+          background-color: #1a1a1a;
+          color: #f5f5f5;
+          padding: 20px;
+          overflow: auto;
+          border-left: 5px solid red;
+        "
+      >
+    <code>
+    # import packages
+    # below packages are built-in - no need to install anything new!
+    # yupi :)
+    import pandas as pd
+    import smtplib
+    from email.message import EmailMessage
+    
+    # set your email and password
+    # please use App Password
+    email_address = "xyz@gmail.com"   # your mail ID
+    email_password = "pass"  # your password
+    
+    # create email
+    msg = EmailMessage()
+    msg['Subject'] = "Email subject"
+    msg['From'] = email_address
+    msg['To'] = "abc@gmail.com"  # Receiver's mail Address
+    msg.set_content("This is email message")
+    
+    sheet_id = '' #Enter Sheet ID
+    df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv")
+    
+    for index, row in df.iterrows():
+        email = row['Email']
+        interest = row['Interest']
+        topic = row['Topic']
+        print(email, interest, topic)
+    
+        if interest == 'Teach':
+            for index, row1 in df.iterrows():
+                other_email = row1['Email']
+                other_interest = row1['Interest']
+                other_topic = row1['Topic']
+    
+                if other_interest == 'Learn':
+                    if topic.lower() == other_topic.lower():
+                        msg = EmailMessage()
+                        msg['Subject'] = f"STU {other_interest}"
+                        msg['From'] = email_address
+                        msg['To'] = other_email
+                        msg.set_content(f"Learn from {email}")
+                        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+                            smtp.login(email_address, email_password)
+                            smtp.send_message(msg)
+                        
+                        msg = EmailMessage()
+                        msg['Subject'] = "STU"
+                        msg['From'] = email_address
+                        msg['To'] = email
+                        msg.set_content(f"Teach to {other_email}")
+                        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+                            smtp.login(email_address, email_password)
+                            smtp.send_message(msg)
+    
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(email_address, email_password)
+        smtp.send_message(msg)
+    </code>
+        </pre>
+    </div>
+
+    <div class="author">— Page by <strong>Swet Singh</strong></div>
+
+    <footer>&copy; 2025 S.T.U Reach. All rights reserved.</footer>
+  </body>
+</html>
